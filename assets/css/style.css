@@ -1,0 +1,97 @@
+/*Imagem Logo EducAfro - Centralizando*/
+.col-11 img{
+    width: 90px;
+    height: 75px;
+    margin: 5px 40%;
+}
+/*Botão De login e Voltar - Centralizando*/
+.col-1 button{
+    float: right;
+    margin: 35px 5px 0 0;
+}
+
+/*Afastando os itens da borda da tela*/
+body {
+	padding: 20px;
+}
+
+/*Sombra em volta do mapa e formulario*/
+.card{
+	box-shadow: 3px 6px 8px 3px rgba(100, 100, 100, 0.3);
+	
+}
+
+
+/*Tamanho dos Itens nos Celulares de até 700px de resolução*/
+@media screen and (max-width:700px){
+	.container{
+		display: block;
+	}
+	.quadro{
+		margin: auto;
+		width: 350px;
+	}
+}
+
+.quadro-2{	
+	width: 350px;
+	margin: auto;
+}
+
+/*Tamanho dos Itens nos Computadores de no minimo 1200px de resolução*/
+@media screen and (min-width:1200px){
+	.container{
+		display:flex;
+	
+	}
+	
+	.quadro{
+		margin:auto;
+		width: 600px;
+	}
+	
+	.quadro-2{
+		width: 400px;
+		margin: 0;
+	}
+}
+/*Animação*/
+
+form{
+	animation-name: fade;
+	animation-duration: 3s;
+}
+
+
+
+@keyframes fade {
+	from{
+		
+		opacity: 0;
+		
+	} to {
+		
+		opacity: 1;
+		
+	}
+	
+}
+
+/*Página de Login Estilização*/
+.quadro-login{
+	width: 300px;
+	height: 400px;
+	margin: auto;
+	padding: 10px;
+}
+
+.usuario, .senha{
+	background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    color: black;
+    font-size: 14px;
+    width: 100%;
+    letter-spacing: 2px;
+}
