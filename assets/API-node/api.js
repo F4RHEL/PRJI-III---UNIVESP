@@ -4,7 +4,7 @@ const port = 80
 
 const bodyparser = require('body-parser')
 
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').objectID
 let db = null
 
 const client = new MongoClient('mongodb://localhost:27017');
@@ -21,22 +21,35 @@ app.get('/users', async function listUser(req, res) {
     res.json(users)
 })
 app.post('/users', async function insertUser(req, res) {
-    const user = await db.collection('users').insertOne()
-    console.log('dados Adicionados', req.body)
-    res.json({ ok: 1 })
+    const user = await db.collection('users').insertOne(req.body)
+    console.log('dados Adicionados', user)
+    res.json({ id: user.insertedId })
+
 })
 
 app.get('/users/:id', async function getUser(req, res) {
-    const users = await db.collection('users').findOne({ _id: req.params.id })
+    const user = await db.collection('users').findOne({ _id: objectId(req.params.id) })
     res.json(user)
 })
 
-app.put('/users/:id', async function name(req, res) {
-
+app.put('/users/:id', async function updateUser(req, res) {
+    const user = await db.collection('users').updateOne({ _id: objectId(req.params.id) }, {
+        $set: req.body
+    })
+    res.json({ ok: 1 })
 })
 
+app.delete('/users', async function deleteUser(req, res) {
+    const user = await db.collection('users').deleteOne({ _id: objectId(req.params.id) })
 
-app.delete('/users')
+    if (user.deletedCount > 1) {
+        res.json({ ok: 1 })
+        console.log('usuario removido')
+    } else {
+        res.json({ ok: 1 })
+        console.log('usuario ja foi removido')
+    }
+})
 
 app.listen(port, function initServer() {
     console.log("servidor iniciado: https://localhost")
